@@ -1,0 +1,9 @@
+{
+  "vendor_name": "DEMO - Sliced Invoices",
+  "invoice_date": "25.01.2016",
+  "invoice_number": "INV-3337",
+  "currency": "USD",
+  "subtotal": 85.00,
+  "tax": 8.50,
+  "total": 93.50
+}
