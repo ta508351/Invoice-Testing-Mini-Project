@@ -1,7 +1,7 @@
 from PyPDF2 import PdfReader
 from pathlib import Path
 invoices_path = Path("invoice_testing/invoices")
-def counting_page():
+def counting_page(invoices_path):
     result ={}
     try:   
         for invoice in invoices_path.iterdir():
@@ -17,12 +17,12 @@ def counting_page():
                                             }
                     
             except IOError:
-                print("File can't be opened: invoice_name")
+                print("File can't be opened: invoice.name")
     except FileNotFoundError:
         print("Invalid Folder") 
     return result  
 if __name__ == "__main__":
-    result = counting_page()
+    result = counting_page(invoices_path)
     print(result)         
     
         
