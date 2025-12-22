@@ -1,4 +1,4 @@
-expected= {
+"""expected= {
   "vendor_name": "CPB Software (Germany) GmbH",
   "invoice_date": "2024.03.01",
   "invoice_number": "123100401",
@@ -11,36 +11,71 @@ extracted = {
   "invoice_date": "2024.03.01",
   "invoice_number": "123100401",
   "currency": "EUR",
-  "subtotal": 38112.00,
   "tax": 7240,
   "total": 45353.00
-} 
+} """
+from pathlib import Path
+import json
 def evaluating_accuracy(expected, extracted):
-    result={}
+    result = {}
     total_fields = len(expected)
-    mismatched_fields= []
+    mismatched_fields = []
     matched_fields = 0
-    for key, value in expected.items():
-      if key  in extracted:
-        if expected[key] == extracted[key]:
-          matched_fields+=1
+    for key in expected:
+        if key in extracted:
+            if expected[key] == extracted[key]:
+                matched_fields += 1
+            else:
+                mismatched_fields.append(key)
         else:
-          mismatched_fields.append(key)
-      else:
-        mismatched_fields.append(key)
+            mismatched_fields.append(key)
+
     score = matched_fields / total_fields
-    result["invoice"] = "invoice_1.pdf"
-    result["score"]= score
-    result["mismatched_fields"]= mismatched_fields
+    result["invoice"]= invoice_name
+    result["score"] = score
+    result["mismatched_fields"] = mismatched_fields
     return result
+
+
 if __name__ == "__main__":
-  result = evaluating_accuracy(expected,extracted)
-  print(result)
-      
-          
-    
-   
-    
-    
-    
-    
+    expected_path = Path("invoice_testing/expected")
+    extracted_path = Path("invoice_testing/extracted")
+
+    results = []
+
+    for expected_file in expected_path.iterdir():
+        if expected_file.is_file() and expected_file.suffix == ".json":
+            with expected_file.open("r", encoding="utf-8") as f:
+                expected_data = json.load(f)
+
+            invoice_name = expected_file.stem + ".pdf"
+            extracted_file = extracted_path / expected_file.name
+            if extracted_file.exists():
+                try:
+                    with extracted_file.open("r", encoding="utf-8") as f:
+                        extracted_data = json.load(f)
+
+                    result = evaluating_accuracy(expected_data, extracted_data)
+                    result["invoice"] = invoice_name
+
+                except json.JSONDecodeError:
+                    
+                    result = {
+                        "invoice": invoice_name,
+                        "score": 0,
+                        "mismatched_fields": list(expected_data.keys())
+                    }
+
+           
+            else:
+                result = {
+                    "invoice": invoice_name,
+                    "score": 0,
+                    "mismatched_fields": list(expected_data.keys())
+                }
+
+            results.append(result)
+
+
+    for r in results:
+        print(r)
