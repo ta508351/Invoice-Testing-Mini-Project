@@ -24,3 +24,21 @@ def test_method1():
                         "mismatched_fields": ['currency',  'subtotal' ,'tax']
                     }
     assert result == evaluating_accuracy(expected_data, extracted_data)
+def test_method2():
+    expected_data={
+  "vendor_name": "DEMO - Sliced Invoices",
+  "invoice_date": "2016.01.25",
+  "invoice_number": "INV-3337",
+  "currency": "USD",
+  "subtotal": 85.00,
+  "tax": 8.50,
+  "total": 93.50
+}
+    extracted_data="Tanya Agrawal"
+    result={
+             "score": 0,
+             "mismatched_fields": []
+    }
+    assert result==evaluating_accuracy(expected_data, extracted_data)
+
+        
