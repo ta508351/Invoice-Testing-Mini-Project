@@ -31,7 +31,6 @@ def evaluating_accuracy(expected, extracted):
             mismatched_fields.append(key)
 
     score = matched_fields / total_fields
-    result["invoice"]= invoice_name
     result["score"] = score
     result["mismatched_fields"] = mismatched_fields
     return result
@@ -55,8 +54,12 @@ if __name__ == "__main__":
                     with extracted_file.open("r", encoding="utf-8") as f:
                         extracted_data = json.load(f)
 
-                    result = evaluating_accuracy(expected_data, extracted_data)
-                    result["invoice"] = invoice_name
+                    score_result = evaluating_accuracy(expected_data, extracted_data)
+                    result = {
+                             "invoice": invoice_name,
+                             "score": score_result["score"],
+                            "mismatched_fields": score_result["mismatched_fields"]
+                            }
 
                 except json.JSONDecodeError:
                     
