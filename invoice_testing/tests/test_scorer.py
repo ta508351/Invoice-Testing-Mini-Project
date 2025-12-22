@@ -37,7 +37,7 @@ def test_method2():
     extracted_data="Tanya Agrawal"
     result={
              "score": 0,
-             "mismatched_fields": []
+             "mismatched_fields": ['vendor_name', 'invoice_date', 'invoice_number', 'currency', 'subtotal', 'tax', 'total']
     }
     assert result==evaluating_accuracy(expected_data, extracted_data)
 
