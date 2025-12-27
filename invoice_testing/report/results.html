@@ -1,0 +1,102 @@
+<html>
+<head>
+  <title>Invoice Processing Report</title>
+  <style>
+    .score-high { 
+        background-color: green;
+    }
+    .score-medium { 
+        background-color: yellow;
+    }
+    .score-low { 
+        background-color: red;
+    }
+    table {
+    border-collapse: collapse;
+    }
+
+    th, td {
+  border: 1px solid #333;
+  padding: 8px;
+  text-align: center;
+}
+
+    
+  </style>
+</head>
+<body>
+
+<h1>Invoice Processing Report</h1>
+<table>
+    
+  <tr>
+    <th>Invoice name</th>
+    <th>Pages</th>
+    <th>Credits Used</th>
+    <th>Accuracy Score</th>
+    <th>Error Count</th>
+
+  </tr>
+    
+    <tr>
+    <td>invoice_1.pdf</td>
+    <td>3</td>
+    <td>3</td>
+    
+    <td class="score-medium">71.4</td>
+    
+    <td>2</td>
+    </tr>
+
+    
+    <tr>
+    <td>invoice_2.pdf</td>
+    <td>1</td>
+    <td>1</td>
+    
+    <td class="score-medium">71.4</td>
+    
+    <td>2</td>
+    </tr>
+
+    
+    <tr>
+    <td>invoice_3.pdf</td>
+    <td>1</td>
+    <td>1</td>
+    
+    <td class="score-low">0</td>
+    
+    <td>7</td>
+    </tr>
+
+    
+    <tr>
+    <td>invoice_4.pdf</td>
+    <td>2</td>
+    <td>2</td>
+    
+    <td class="score-low">57.1</td>
+    
+    <td>3</td>
+    </tr>
+
+    
+    <tr>
+    <td>invoice_5.pdf</td>
+    <td>2</td>
+    <td>2</td>
+    
+    <td class="score-low">42.8</td>
+    
+    <td>4</td>
+    </tr>
+
+    
+  
+</table>
+
+
+
+</body>
+</html>
