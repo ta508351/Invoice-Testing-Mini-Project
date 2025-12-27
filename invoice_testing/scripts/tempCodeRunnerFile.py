@@ -1,0 +1,1 @@
+if  invoice.is_file() and invoice.suffix == ".pdf":

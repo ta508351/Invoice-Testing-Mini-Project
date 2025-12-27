@@ -1,0 +1,62 @@
+<html>
+<head>
+  <title>Invoice Processing Report</title>
+  <style>
+    .score-high { 
+        background-color: green;
+    }
+    .score-medium { 
+        background-color: yellow;
+    }
+    .score-low { 
+        background-color: red;
+    }
+    table {
+    border-collapse: collapse;
+    }
+
+    th, td {
+  border: 1px solid #333;
+  padding: 8px;
+  text-align: center;
+}
+
+    
+  </style>
+</head>
+<body>
+
+<h1>Invoice Processing Report</h1>
+<table>
+    
+  <tr>
+    <th>Invoice name</th>
+    <th>Pages</th>
+    <th>Credits Used</th>
+    <th>Accuracy Score</th>
+    <th>Error Count</th>
+
+  </tr>
+    {% for invoice in invoices %}
+    <tr>
+    <td>{{ invoice.invoice_name }}</td>
+    <td>{{ invoice.pages }}</td>
+    <td>{{ invoice.credits_used }}</td>
+    {% if invoice.accuracy_score >= 90 %}
+    <td class="score-high">{{ invoice.accuracy_score }}</td>
+    {% elif invoice.accuracy_score >= 70 %}
+    <td class="score-medium">{{ invoice.accuracy_score }}</td>
+    {% else %}
+    <td class="score-low">{{ invoice.accuracy_score }}</td>
+    {% endif %}
+    <td>{{ invoice.error_count }}</td>
+    </tr>
+
+    {% endfor %}
+  
+</table>
+
+
+
+</body>
+</html>
