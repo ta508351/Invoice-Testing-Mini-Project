@@ -46,7 +46,7 @@ rendered_html = template.render(invoices=invoices)
 
 os.makedirs("report", exist_ok=True)
 
-with open("report/results.html", "w", encoding="utf-8") as f:
+with open("invoice_testing/report/results.html", "w", encoding="utf-8") as f:
     f.write(rendered_html)
 
-print("✅ Report generated successfully: report/results.html")
+print("✅ Report generated successfully: invoice_testing/report/results.html")
